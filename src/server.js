@@ -2,6 +2,7 @@
 
 import axios from 'axios'
 import { autoUpdater } from "electron-updater"
+import log from "electron-log"
 import crypto from 'crypto'
 import { app, BrowserWindow, ipcMain, ipcRenderer, Tray, powerSaveBlocker } from 'electron';
 import settings from 'electron-settings'
@@ -17,14 +18,7 @@ import socketIO from 'socket.io'
  * Función para actualizar la app
  */
 
-export default class AppUpdater {
-    constructor() {
-        const log = require("electron-log")
-        log.transports.file.level = "debug"
-        autoUpdater.logger = log
-        autoUpdater.checkForUpdatesAndNotify()
-    }
-}
+
 // require('update-electron-app')({
 //     repo: 'jxool/spiderProject',
 //     updateInterval: '1 hour'
@@ -88,6 +82,8 @@ let conf = dataUser()
  * Configuracion de la ventana nativa del O.S
  */
 app.on('ready', () => {
+
+    autoUpdater.checkForUpdatesAndNotify();
     //Instancea de la ventana
     global.win = new BrowserWindow({
         width: parseInt(conf[0].minWidth),
