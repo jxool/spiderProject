@@ -4,7 +4,7 @@
     "description": "GSTrackme desktop application",
     "main": "src/server.js",
     "scripts": {
-        "sp": "cross-env NODE_ENV=development electron src/server.js",
+        "sp": "cross-env NODE_ENV=production electron src/server.js",
         "test": "mocha",
         "start": "electron-forge start",
         "package-win": "electron-forge package --arch=ia32 --platform=win32",

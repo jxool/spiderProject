@@ -96,6 +96,7 @@ autoUpdater.on('checking-for-update', () => {
 })
 
 autoUpdater.on('update-available', (info) => {
+    autoDownload = true
     log.info('Actualizacion disponible');
 })
 
@@ -112,7 +113,6 @@ autoUpdater.on('error', (err) => {
  */
 app.on('ready', () => {
 
-    autoUpdater.checkForUpdatesAndNotify();
     //Instancea de la ventana
     global.win = new BrowserWindow({
         width: parseInt(conf[0].minWidth),
@@ -159,6 +159,7 @@ app.on('ready', () => {
         global.win.isVisible() ? global.win.hide() : global.win.show()
     })
 
+    autoUpdater.checkForUpdatesAndNotify();
     //Evento de cierre
     global.win.on('closed', () => {
         global.win = null
