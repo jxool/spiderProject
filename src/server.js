@@ -13,12 +13,20 @@ import os from 'os'
 import path from 'path'
 import socketIO from 'socket.io'
 
-
+//-------------------------------------------------------------------
+// Logging
+//
+// THIS SECTION IS NOT REQUIRED
+//
+// This logging setup is not required for auto-updates to work,
+// but it sure makes debugging easier :)
+//-------------------------------------------------------------------
+autoUpdater.logger = log;
+autoUpdater.logger.transports.file.level = 'info';
+log.info('App starting...');
 /**
  * Función para actualizar la app
  */
-
-
 // require('update-electron-app')({
 //     repo: 'jxool/spiderProject',
 //     updateInterval: '1 hour'
@@ -77,6 +85,27 @@ powerSaveBlocker.stop(id)
 
 let conf = dataUser()
 
+
+
+/**
+ * Configuramos autopudate
+ */
+
+autoUpdater.on('checking-for-update', () => {
+    log.info(text);
+})
+
+autoUpdater.on('update-available', (info) => {
+    log.info('Actualizacion disponible');
+})
+
+autoUpdater.on('update-not-available', (info) => {
+    log.info('Actualizacion no disponible');
+})
+
+autoUpdater.on('error', (err) => {
+    log.info('Error in auto-updater. ' + err);
+})
 
 /**
  * Configuracion de la ventana nativa del O.S
