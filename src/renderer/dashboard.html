@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>GS Trackme | Alarmas</title>
+
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="../assets/css/responsive.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.4/css/materialize.min.css"> -->
+</head>
+
+<body style="background: #96BDDF">
+    <section class="alarms">
+        <div class="container">
+            <div class="row container-alarms">
+
+                <!--Sección para los botones notificacione y cambio de usuario-->
+                <div class="btn-group groupBtn float-right " role="group" aria-label="Button group with nested dropdown">
+
+                    <div class="btn-group dropleft" role="group">
+                        <button id="btnGroupDrop1" type="button" class="btn btn-icons dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img class="img-notification" src="../assets/images/alarms/bell.svg" alt="">
+                            <span id="cont" style="display:none" class="badge badge-secondary"></span>
+                        </button>
+                        <div id="list-notification" class="dropdown-menu scrollable-menu" aria-labelledby="btnGroupDrop1">
+                        </div>
+                    </div>
+
+                    <button id="login" type="button" class="btn btn-icons"><img class="img-notification" src="../assets/images/alarms/user.svg" alt=""></button>
+                </div>
+
+                <header>
+                    <img src="../assets/images/logo-trackme-alarmas.png" class="img-fluid " alt="">
+                </header>
+                <div class="col-lg-12">
+                    <p class="subtitle-alarm">ALARMAS</p>
+                    <hr>
+                    <p class="subtitle-alarm">Mostrar las notificaciones de:</p>
+                </div>
+                <form action="#">
+                    <div class="col-lg-12 ">
+                        <div class="row">
+                            <!--alarma 1-->
+                            <!-- <div class="col-img">
+                                <img src="../assets/images/alarms/alam1.png" alt="Alarma 1">
+                            </div>
+                            <div class="col-lg-8 col-text">
+                                <p>Entrada a geocerca</p>
+                            </div>
+                            <div class="col-sm-2 col-md-2 col-lg-2 col-switch">
+                                <div class="switch">
+                                    <label>
+                                        <input id="EG" type="checkbox" checked>
+                                        <span class="lever"></span>
+                                    </label>
+                                </div>
+                            </div> -->
+                            <!-- / alarma 1-->
+                            <!--alarma 2-->
+                            <!-- <div class="col-img">
+                                <img src="../assets/images/alarms/alam2.png" alt="Alarma 2">
+                            </div>
+                            <div class="col-lg-8 col-text">
+                                <p>Salida de geocerca</p>
+                            </div>
+                            <div class="col-sm-2 col-md-2 col-lg-2 col-switch">
+                                <div class="switch">
+                                    <label>
+                                      <input id="SG" type="checkbox" checked>
+                                      <span class="lever"></span>
+                                    </label>
+                                </div>
+                            </div> -->
+                            <!--alarma 2-->
+                            <!--alarma 3-->
+                            <div class="col-img">
+                                <img src="../assets/images/alarms/030.png" alt="Alarma 3">
+                            </div>
+                            <div class="col-lg-8 col-text">
+                                <p> Parada en exceso</p>
+                            </div>
+                            <div class="col-sm-2 col-md-2 col-lg-2 col-switch">
+                                <div class="switch">
+                                    <label>
+                                        <input id="030" type="checkbox" checked>
+                                        <span class="lever"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <!--alarma 3-->
+
+                            <!--alarma 4-->
+                            <!-- <div class="col-img">
+                                <img src="../assets/images/alarms/alam4.png" alt="Alarma 4">
+                            </div>
+                            <div class="col-lg-8 col-text">
+                                <p> Tiempo minimo en punto incumplido</p>
+                            </div>
+                            <div class="col-sm-2 col-md-2 col-lg-2 col-switch"> -->
+                            <!-- <label class="switch">
+                                    <input type="checkbox" checked>
+                                    <span class="slider round"></span>
+                                </label> -->
+                            <!-- <div class="switch">
+                                    <label>
+                                        <input type="checkbox" checked>
+                                        <span class="lever"></span>
+                                    </label>
+                                </div>
+                            </div> -->
+                            <!--alarma 4-->
+
+                            <!--alarma 5-->
+                            <!-- <div class="col-img">
+                                <img src="../assets/images/alarms/alam5.png" alt="Alarma 5">
+                            </div>
+                            <div class="col-lg-8 col-text">
+                                <p>Desvío de ruta</p>
+                            </div>
+                            <div class="col-sm-2 col-md-2 col-lg-2 col-switch">
+                                <div class="switch">
+                                    <label>
+                                        <input type="checkbox" checked>
+                                        <span class="lever"></span>
+                                    </label>
+                                </div>
+                            </div> -->
+                            <!--alarma 5-->
+                            <!--alarma 6-->
+                            <div class="col-img">
+                                <img src="../assets/images/alarms/006.png" alt="Alarma 6">
+                            </div>
+                            <div class="col-lg-8 col-text">
+                                <p>Desconexión de GPS</p>
+                            </div>
+                            <div class="col-sm-2 col-md-2 col-lg-2 col-switch">
+                                <div class="switch">
+                                    <label>
+                                        <input id="006" type="checkbox" checked>
+                                        <span class="lever"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <!--alarma 6-->
+                            <!--alarma 7-->
+                            <div class="col-img">
+                                <img src="../assets/images/alarms/032.png" alt="Alarma 7">
+                            </div>
+                            <div class="col-lg-8 col-text">
+                                <p>Excesos de velocidad</p>
+                            </div>
+                            <div class="col-sm-2 col-md-2 col-lg-2 col-switch">
+                                <div class="switch">
+                                    <label>
+                                        <input id="032" type="checkbox" checked>
+                                        <span class="lever"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <!--alarma 7-->
+                            <!--alarma 8-->
+                            <div class="col-img">
+                                <img src="../assets/images/alarms/001.png" alt="Alarma 8">
+                            </div>
+                            <div class="col-lg-8 col-text">
+                                <p>Ayuda</p>
+                            </div>
+                            <div class="col-sm-2 col-md-2 col-lg-2 col-switch">
+                                <div class="switch">
+                                    <label>
+                                        <input id="001" type="checkbox" checked>
+                                        <span class="lever"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <!--alarma 8-->
+
+                            <!--alarma 9-->
+                            <div class="col-img">
+                                <img src="../assets/images/alarms/002.png" alt="Alarma 9">
+                            </div>
+                            <div class="col-lg-8 col-text">
+                                <p>Encendido y apagado de motor.</p>
+                            </div>
+                            <div class="col-sm-2 col-md-2 col-lg-2 col-switch">
+                                <div class="switch">
+                                    <label>
+                                        <input id="002" type="checkbox" checked>
+                                        <span class="lever"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <!--alarma 9-->
+                            <!--alarma 10-->
+                            <div class="col-img">
+                                <img src="../assets/images/alarms/004.png" alt="Alarma 10">
+                            </div>
+                            <div class="col-lg-8 col-text">
+                                <p>Puerta abierta y cerrada</p>
+                            </div>
+                            <div class="col-sm-2 col-md-2 col-lg-2 col-switch">
+                                <div class="switch">
+                                    <label>
+                                        <input id="004" type="checkbox" checked>
+                                        <span class="lever"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <!--alarma 10-->
+                            <!--alarma 11-->
+                            <div class="col-img">
+                                <img src="../assets/images/alarms/021.png" alt="Alarma 11">
+                            </div>
+                            <div class="col-lg-8 col-text">
+                                <p>Grúa normal e invertida</p>
+                            </div>
+                            <div class="col-sm-2 col-md-2 col-lg-2 col-switch">
+                                <div class="switch">
+                                    <label>
+                                        <input id="021" type="checkbox" checked>
+                                        <span class="lever"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <!--alarma 11-->
+                            <!--alarma 12-->
+                            <!-- <div class="col-img">
+                                <img src="../assets/images/alarms/alam12.png" alt="Alarma 12">
+                            </div>
+                            <div class="col-lg-8 col-text">
+                                <p>BARREDORAS(SWEEPER)</p>
+                            </div>
+                            <div class="col-sm-2 col-md-2 col-lg-2 col-switch">
+                                <div class="switch">
+                                    <label>
+                                        <input type="checkbox" checked>
+                                        <span class="lever"></span>
+                                    </label>
+                                </div>
+                            </div> -->
+                            <!--alarma 12-->
+                            <!--alarma 13-->
+                            <!-- <div class="col-img">
+                                <img src="../assets/images/alarms/alam13.png" alt="Alarma 13">
+                            </div>
+                            <div class="col-lg-8 col-text">
+                                <p>Mantenimiento</p>
+                            </div>
+                            <div class="col-sm-2 col-md-2 col-lg-2 col-switch">
+                                <div class="switch">
+                                    <label>
+                                        <input type="checkbox" checked>
+                                        <span class="lever"></span>
+                                    </label>
+                                </div>
+                            </div> -->
+                            <!--alarma 13-->
+                            <!--alarma 14-->
+                            <!-- <div class="col-img">
+                                <img src="../assets/images/alarms/025.png" alt="Alarma 14">
+                            </div>
+                            <div class="col-lg-8 col-text">
+                                <p>Parada con motor encendido</p>
+                            </div>
+                            <div class="col-sm-2 col-md-2 col-lg-2 col-switch">
+                                <div class="switch">
+                                    <label>
+                                        <input id="025" type="checkbox" checked>
+                                        <span class="lever"></span>
+                                    </label>
+                                </div>
+                            </div> -->
+                            <!--alarma 14-->
+                            <div class="col-lg-12 text-right" id="saveAlerts">
+                                <button id="saveAlerts" type="button" class="btn-alarm">GUARDAR</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+    <!-- <script src="../../node_modules/socket.io-client/dist/socket.io.js"></script> -->
+    <script src="lib/main.js"></script>
+    <script src="dashboard-window/dashboard-frontend.js"></script>
+    <script src="dashboard-window/sockets-events.js"></script>
+</body>
+
+</html>

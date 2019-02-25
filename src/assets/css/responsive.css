@@ -1,0 +1,141 @@
+@media (max-width: 330px){
+    .login-trackme #form form {
+        width: 90% !important;
+        overflow: hidden;
+    }
+    .alarms .col-img img{
+        width: 27px;
+    }
+}
+@media (max-width: 500px){
+    .alarms .container-alarms{
+        width: 100%;
+        height: 100%;
+        position: relative;
+        top: 0%;
+        left: 0%;
+        transform: none !important;    
+    }
+    .alarms .col-text {
+        max-width: 71.666667% !important;
+        flex: 0 0 71.666667%;
+    }
+    .alarms .col-img {
+        padding-left: 9px;
+    }
+    .alarms .btn-alarm {
+        margin-right: 14px;
+    }
+    .alarms .col-switch{
+        padding: 0px;
+    }
+}
+@media (max-width: 767px){
+    .login-trackme .back-blue {
+        height: 40vh;
+    }
+    .login-trackme #form{
+        height: 60vh;
+    }
+    .login-trackme .carousel-inner img {
+        width: 90px;
+        height: 90px;
+    }
+    .login-trackme span {
+        bottom: -40px;
+    }
+    .login-trackme #form form {
+        top: 40%;
+        width: 280px;
+    }
+    .login-trackme #form .img-trackme {
+        margin-bottom: 15px;
+        width: 200px;
+    }
+    .login-trackme #carouselExampleIndicators p {
+        font-size: 16px;
+        margin-top: 3%;
+    }
+    .login-trackme #form .social {
+        bottom: 4px;
+    }
+    .login-trackme #form .icon-social {
+        margin-bottom: 0px;
+    }
+    .login-trackme #form .remember {
+        margin-right: 0px;
+        text-align: center;
+        margin: auto;
+        display: block;
+    }
+    .login-trackme #form .btn-trackme {
+        margin: auto;
+        display: block;
+        margin-top: 20px;
+    }
+     /* //////////////// ALARMAS ///////////////////*/
+     .alarms .col-switch{
+        flex: 0 0 16.666667%;
+        max-width: 16.666667%;
+    }
+    
+}
+@media only screen and (min-width:768px) and (max-width:992px){
+    /* //////////////// LOGIN ///////////////////*/
+    .login-trackme .carousel-inner img {
+        width: 220px;
+    }
+    .login-trackme #form .col-lg-10 {
+        max-width: 85.333333%;
+    }
+    .login-trackme #form .col-lg-2 img {
+        width: 20px;
+    }
+    .login-trackme #carouselExampleIndicators p {
+        font-size: 22px;
+    }
+    .login-trackme #form .remember {
+        margin-right: 0px;
+        text-align: center;
+        margin: auto;
+        display: block;
+    }
+    .login-trackme #form .btn-trackme {
+        margin: auto;
+        display: block;
+        margin-top: 20px;
+    }
+    /* //////////////// END LOGIN ///////////////////*/
+}
+@media only screen and (min-width:993px) and (max-width:1100px){
+    .login-trackme #form .remember {
+        text-align: center;
+        margin: auto;
+        display: block;
+    }
+}
+@media (min-width: 1500px){
+    .login-trackme #form form {
+        width: 400px;
+    }
+
+}
+
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 568px) and (orientation : landscape) {
+    .login-trackme .back-blue {
+        height: 250px;
+    }
+    .login-trackme #form{
+        height: 400px;
+    }
+}
+
+@media only screen and (min-device-width : 360px) and (max-device-width : 640px) and (orientation : landscape) {
+    .login-trackme .back-blue {
+        height: 250px;
+    }
+    .login-trackme #form{
+        height: 400px;
+    }
+}

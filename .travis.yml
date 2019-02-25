@@ -1,0 +1,17 @@
+language: node_js
+cache:
+  directories:
+    - ~/.npm
+notifications:
+  email: jxool@3code.us
+node_js:
+  - '11'
+deploy:
+  provider: releases
+  api_key: "56369db39d1062cd1b652679cb3486d863fd906b"
+  file: "./"
+  skip_cleanup: true
+  on:
+    repo: jxool/spiderProject
+    tags: true
+    all_branches: true

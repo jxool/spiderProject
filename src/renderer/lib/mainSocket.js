@@ -1,0 +1,1 @@
+window.SocketIO = require('socket.io');
