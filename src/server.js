@@ -24,9 +24,9 @@ import socketIO from 'socket.io'
 autoUpdater.logger = log;
 autoUpdater.logger.transports.file.level = 'info';
 log.info('App starting...');
-/**
- * Función para actualizar la app
- */
+// /**
+//  * Función para actualizar la app
+//  */
 // require('update-electron-app')({
 //     repo: 'jxool/spiderProject',
 //     updateInterval: '1 hour'
@@ -72,8 +72,11 @@ global.visible = false
     /**
      * Configuracion del entorno de desarrollo
      */
+
+
 if (process.env.NODE_ENV === 'development') {
     devtools()
+    console.log('development')
 }
 
 /**
@@ -91,27 +94,29 @@ let conf = dataUser()
  * Configuramos autopudate
  */
 
-autoUpdater.on('checking-for-update', () => {
-    log.info(text);
-})
+// autoUpdater.on('checking-for-update', () => {
+//     log.info(text);
+// })
 
-autoUpdater.on('update-available', (info) => {
-    autoDownload = true
-    log.info('Actualizacion disponible');
-})
+// autoUpdater.on('update-available', (info) => {
+//     autoDownload = true
+//     log.info('Actualizacion disponible');
+// })
 
-autoUpdater.on('update-not-available', (info) => {
-    log.info('Actualizacion no disponible');
-})
+// autoUpdater.on('update-not-available', (info) => {
+//     log.info('Actualizacion no disponible');
+// })
 
-autoUpdater.on('error', (err) => {
-    log.info('Error in auto-updater. ' + err);
-})
+// autoUpdater.on('error', (err) => {
+//     log.info('Error in auto-updater. ' + err);
+// })
 
 /**
  * Configuracion de la ventana nativa del O.S
  */
 app.on('ready', () => {
+
+    autoUpdater.checkForUpdates();
 
     //Instancea de la ventana
     global.win = new BrowserWindow({
@@ -159,7 +164,6 @@ app.on('ready', () => {
         global.win.isVisible() ? global.win.hide() : global.win.show()
     })
 
-    autoUpdater.checkForUpdatesAndNotify();
     //Evento de cierre
     global.win.on('closed', () => {
         global.win = null
