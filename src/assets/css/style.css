@@ -471,3 +471,8 @@ input[type=checkbox]:not(:disabled).tabbed:focus~.lever::before {
     color: white;
     text-align: center;
 }
+
+.version {
+    float: left;
+    margin-top: 20px
+}

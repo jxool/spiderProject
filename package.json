@@ -1,10 +1,10 @@
 {
     "name": "gstrackme",
-    "version": "2.0.0",
+    "version": "1.0.0",
     "description": "GSTrackme desktop application",
     "main": "src/server.js",
     "scripts": {
-        "sp": "cross-env NODE_ENV=production electron src/server.js",
+        "sp": "cross-env NODE_ENV=development electron src/server.js",
         "test": "mocha",
         "start": "electron-forge start",
         "package-win": "electron-forge package --arch=ia32 --platform=win32",
@@ -23,7 +23,7 @@
         "babel-preset-react": "^6.24.1",
         "electron-builder": "^20.38.5",
         "electron-forge": "^5.2.4",
-        "electron-prebuilt-compile": "1.6.6",
+        "electron-prebuilt-compile": "3.0.13",
         "mocha": "^6.0.1"
     },
     "dependencies": {

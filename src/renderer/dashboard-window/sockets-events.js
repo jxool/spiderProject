@@ -44,7 +44,6 @@ socket.on('connect', function() {
 })
 
 socket.on('enviando', function(resp) {
-    console.log('escucha dasd')
     var div = document.getElementById('list-notification')
     var node = document.createElement("LI")
     if (resp.data[1].state == 0) {

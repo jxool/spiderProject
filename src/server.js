@@ -13,28 +13,24 @@ import os from 'os'
 import path from 'path'
 import socketIO from 'socket.io'
 
-//-------------------------------------------------------------------
-// Logging
-//
-// THIS SECTION IS NOT REQUIRED
-//
-// This logging setup is not required for auto-updates to work,
-// but it sure makes debugging easier :)
-//-------------------------------------------------------------------
+/**-------------------------------------------------------------------
+ * Variables globales
+ ---------------------------------------------------------------------*/
+global.win
+global.child
+global.tray
+global.visible = false
+
+/**-------------------------------------------------------------------
+ *Log para auto-update
+ -------------------------------------------------------------------*/
 autoUpdater.logger = log;
 autoUpdater.logger.transports.file.level = 'info';
 log.info('App starting...');
-// /**
-//  * Función para actualizar la app
-//  */
-// require('update-electron-app')({
-//     repo: 'jxool/spiderProject',
-//     updateInterval: '1 hour'
-// })
 
-/**
+/**-------------------------------------------------------------------
  * Función para configurar para el web server
- */
+---------------------------------------------------------------------- */
 const apps = express()
 let server = http.createServer(apps);
 
@@ -55,9 +51,9 @@ server.listen(port, (err) => {
 });
 
 
-/**
+/**----------------------------------------------------------------------
  * Configuración que abre la app al iniciar el O.S
- */
+ ------------------------------------------------------------------------*/
 const appFolder = path.dirname(process.execPath)
 const updateExe = path.resolve(appFolder, '..', 'gstrackme.exe')
 app.setLoginItemSettings({
@@ -65,58 +61,24 @@ app.setLoginItemSettings({
     path: updateExe
 })
 
-global.win
-global.child
-global.tray
-global.visible = false
-    /**
-     * Configuracion del entorno de desarrollo
-     */
-
-
+/**----------------------------------------------------------------------
+ * Configuracion del entorno de desarrollo
+ * enableLiveReload && electronDebug
+ -------------------------------------------------------------------------*/
 if (process.env.NODE_ENV === 'development') {
     devtools()
-    console.log('development')
 }
 
-/**
- * Configuración para que la app siga en proceso
- */
+/**---------------------------------------------------------------------------
+ * Bloquee el sistema para que no ingrese al modo de bajo consumo (suspensión)
+------------------------------------------------------------------------------ */
 const id = powerSaveBlocker.start('prevent-display-sleep')
 
 powerSaveBlocker.stop(id)
 
 let conf = dataUser()
 
-
-
-/**
- * Configuramos autopudate
- */
-
-// autoUpdater.on('checking-for-update', () => {
-//     log.info(text);
-// })
-
-// autoUpdater.on('update-available', (info) => {
-//     autoDownload = true
-//     log.info('Actualizacion disponible');
-// })
-
-// autoUpdater.on('update-not-available', (info) => {
-//     log.info('Actualizacion no disponible');
-// })
-
-// autoUpdater.on('error', (err) => {
-//     log.info('Error in auto-updater. ' + err);
-// })
-
-/**
- * Configuracion de la ventana nativa del O.S
- */
 app.on('ready', () => {
-
-    autoUpdater.checkForUpdates();
 
     //Instancea de la ventana
     global.win = new BrowserWindow({
@@ -169,8 +131,15 @@ app.on('ready', () => {
         global.win = null
         app.quit()
     })
+
+    // trigger autoupdate check
+    autoUpdater.checkForUpdates();
 })
 
+
+/**---------------------------------------------------------------------
+ * Configuración para la interfaz del dasboard
+ -----------------------------------------------------------------------*/
 ipcMain.on('new_Url', (event, arg) => {
     global.win.loadURL(`file://${__dirname}/renderer/dashboard.html`)
     global.win.once('ready-to-show', () => {
@@ -199,6 +168,9 @@ ipcMain.on('login', (event, arg) => {
     global.win.setSize(850, 600)
 })
 
+/**------------------------------------------------------------------------
+ * Configuración para la ventana de historico
+ -------------------------------------------------------------------------*/
 ipcMain.on('childWin', (event, arg) => {
     global.child = new BrowserWindow({
         parent: global.win,
@@ -226,9 +198,9 @@ ipcMain.on('childWin', (event, arg) => {
 
 
 
-/**
- * Funcion para determinar si existe datos y definir la confg. de l ventana
- */
+/**---------------------------------------------------------------------------------
+ * Funcion para determinar si existe datos y definir la configuración. de la ventana
+ -------------------------------------------------------------------------------------*/
 
 function settingsExist() {
     let dirSettings = settings.file()
@@ -267,9 +239,9 @@ function dataUser() {
     return conf
 }
 
-/**
+/**------------------------------------------------------------------------------------
  * Función para conectarse a la api de inicio de sesión
- */
+ ----------------------------------------------------------------------------------*/
 function conAxios(email, password) {
     const decipher = crypto.createDecipher('aes192', 'spiderProject2018')
     let decrypted = decipher.update(password, 'hex', 'utf8')
@@ -301,3 +273,21 @@ function conAxios(email, password) {
             console.log(error);
         });
 }
+
+/**-----------------------------------------------------------------------
+ * Configuración de autoupdate
+ --------------------------------------------------------------------------*/
+
+//Se emite cuando hay una actualización disponible
+// autoUpdater.on('update-available', info => {
+//     console.log('disponible')
+// });
+
+//Se emite al verificar si se ha iniciado una actualización
+// autoUpdater.on('checking-for-update', (info) => {
+//     console.log('info')
+// });
+
+// autoUpdater.on('update-downloaded', info => {
+//     sendStatusToWindow('Update downloaded; will install now');
+// });
