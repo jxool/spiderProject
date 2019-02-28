@@ -285,13 +285,13 @@ function conAxios(email, password) {
 autoUpdater.on('update-available', info => {
     autoUpdater.autoDownload = true
     notifierServer.notify({
-        title: 'Actualizacion disponible',
-        message: 'La aplicacion se reiniciara.....'
+        title: 'Actualización disponible',
+        message: 'La aplicacion se reiniciara en unos momentos'
     });
 
 
     global.childUpdate = new BrowserWindow({
-        parent: 'top',
+        parent: global.win,
         modal: true,
         width: 600,
         height: 400,
