@@ -291,7 +291,7 @@ autoUpdater.on('update-available', info => {
 
 
     global.childUpdate = new BrowserWindow({
-        parent: 'top',
+        parent: global.win,
         modal: true,
         width: 600,
         height: 400,
