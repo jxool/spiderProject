@@ -5,6 +5,7 @@ import { autoUpdater } from "electron-updater"
 import log from "electron-log"
 import crypto from 'crypto'
 import { app, BrowserWindow, ipcMain, ipcRenderer, Tray, powerSaveBlocker } from 'electron';
+import notifierServer from 'node-notifier';
 import settings from 'electron-settings'
 import express from 'express'
 import devtools from './devtools'
@@ -18,6 +19,7 @@ import socketIO from 'socket.io'
  ---------------------------------------------------------------------*/
 global.win
 global.child
+global.childUpdate
 global.tray
 global.visible = false
 
@@ -95,7 +97,7 @@ app.on('ready', () => {
         maxWidth: parseInt(conf[0].minWidth),
         maxHeight: parseInt(conf[0].minHeight),
         title: "GSTrackme",
-        closable: false,
+        closable: true,
         show: conf[0].show,
         skipTaskbar: true,
         icon: path.join(__dirname, 'assets', 'images', 'icons', 'icon.png')
@@ -149,6 +151,7 @@ ipcMain.on('new_Url', (event, arg) => {
     })
 
     event.sender.send('pong', new Date())
+
     global.win.setMinimumSize(520, 633)
     global.win.setMaximumSize(520, 633)
     global.win.setSize(520, 633)
@@ -279,15 +282,53 @@ function conAxios(email, password) {
  --------------------------------------------------------------------------*/
 
 //Se emite cuando hay una actualización disponible
-// autoUpdater.on('update-available', info => {
-//     console.log('disponible')
-// });
+autoUpdater.on('update-available', info => {
+    autoUpdater.autoDownload = true
+    notifierServer.notify({
+        title: 'Actualizacion disponible',
+        message: 'La aplicacion se reiniciara.....'
+    });
+
+
+    global.childUpdate = new BrowserWindow({
+        parent: 'top',
+        modal: true,
+        width: 600,
+        height: 400,
+        modal: true,
+        show: false,
+        closable: false,
+        maximizable: false,
+        backgroundColor: '#2e2c29',
+        center: true,
+        autoHideMenuBar: true,
+        icon: path.join(__dirname, 'assets', 'images', 'icons', 'icon.png')
+    })
+    global.childUpdate.loadURL(`file://${__dirname}/renderer/autoUpdate.html`)
+    global.childUpdate.once('ready-to-show', () => {
+        global.childUpdate.show()
+
+        // global.visible = true
+    })
+
+    global.childUpdate.on('closed', () => {
+        global.childUpdate = null
+
+        // global.visible = false
+    })
+});
+
+autoUpdater.on('download-progress', (progress) => {
+
+    global.childUpdate.webContents.send('progressDow', progress.percent);
+    // console.log(progress.percent)
+})
 
 //Se emite al verificar si se ha iniciado una actualización
 // autoUpdater.on('checking-for-update', (info) => {
 //     console.log('info')
 // });
 
-// autoUpdater.on('update-downloaded', info => {
-//     sendStatusToWindow('Update downloaded; will install now');
-// });
+autoUpdater.on('update-downloaded', (info) => {
+    autoUpdater.quitAndInstall(false, true);
+});
