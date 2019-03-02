@@ -4,7 +4,7 @@
     "description": "GSTrackme desktop application",
     "main": "src/server.js",
     "scripts": {
-        "sp": "cross-env NODE_ENV=development electron src/server.js",
+        "sp": "cross-env NODE_ENV=production electron src/server.js",
         "test": "mocha",
         "start": "electron-forge start",
         "package-win": "electron-forge package --arch=ia32 --platform=win32",
@@ -24,7 +24,8 @@
         "electron-builder": "^20.38.5",
         "electron-forge": "^5.2.4",
         "electron-prebuilt-compile": "3.0.13",
-        "mocha": "^6.0.1"
+        "mocha": "^6.0.1",
+        "webpack": "^4.29.6"
     },
     "dependencies": {
         "asar": "^0.14.6",
@@ -93,6 +94,9 @@
     },
     "build": {
         "appId": "com.GSTrackme",
+        " asarUnpack ": [
+            " ./app/node_modules/node-notifier/vendor/** "
+        ],
         "win": {
             "target": "nsis",
             "icon": "./src/assets/images/icons/icon.ico"

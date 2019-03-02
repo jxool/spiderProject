@@ -330,5 +330,5 @@ autoUpdater.on('download-progress', (progress) => {
 // });
 
 autoUpdater.on('update-downloaded', (info) => {
-    autoUpdater.quitAndInstall(false, true);
+    autoUpdater.quitAndInstall(true, true);
 });
