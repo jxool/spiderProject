@@ -4,6 +4,7 @@ import notifier from 'node-notifier';
 import path from 'path';
 import settings from 'electron-settings';
 import opn from 'opn';
+import log from "electron-log"
 
 io.on('connection', (client) => {
     client.on('recibiendo', (data, callback) => {
@@ -46,6 +47,8 @@ let listenSocket = async(data) => {
         let alertVerify = enable.find(enable => {
             return data.event == enable.event;
         });
+
+
         if (verify != undefined && alertVerify != undefined) {
             // validateEvents(data, alertVerify);
             switch (data.event) {
@@ -99,13 +102,14 @@ let pushEvents = (response, client) => {
     } else {
         body = 'Evento: ' + response.data[0].name_event;
     }
-    //icon: path.join(__dirname, `/alarms/${response.data[0].icon}.png`),
+
+    // icon: path.join(__dirname, `alarms/${response.data[0].icon}.png`)
+
     notifier.notify({
         title: 'Unidad: ' + response.data[0].name_device,
         message: body,
         wait: true,
-        sound: true,
-        icon: path.join(__dirname, `/alarms/${response.data[0].icon}.png`)
+        sound: true
     }, function(error, data) {
         if (data === 'activate') {
             pushSave(1, response, client)

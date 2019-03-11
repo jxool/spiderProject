@@ -17,8 +17,8 @@ gsSocket.on('disconnect', function() {
  */
 gsSocket.on('new-event', function(response) {
     if (response != null && response.body.event != '011') {
-        if (settings.get('data.id_client') == response.body.idClient) {
-            socket.emit('recibiendo', {
+        // if (settings.get('data.id_client') == response.body.idClient) {
+        socket.emit('recibiendo', {
                 id_device: response.body.idDevice,
                 nameDevice: response.body.nameDevice,
                 event: response.body.event,
@@ -28,7 +28,7 @@ gsSocket.on('new-event', function(response) {
                 long: response.body.long,
                 nameClient: response.body.nameClient
             }, function(err) {})
-        }
+            // }
     }
 
 })

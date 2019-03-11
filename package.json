@@ -1,6 +1,6 @@
 {
     "name": "gstrackme",
-    "version": "2.0.0",
+    "version": "2.0.1",
     "description": "GSTrackme desktop application",
     "main": "src/server.js",
     "scripts": {
@@ -94,9 +94,6 @@
     },
     "build": {
         "appId": "com.GSTrackme",
-        " asarUnpack ": [
-            " ./app/node_modules/node-notifier/vendor/** "
-        ],
         "win": {
             "target": "nsis",
             "icon": "./src/assets/images/icons/icon.ico"
