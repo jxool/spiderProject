@@ -18,7 +18,7 @@ gsSocket.on('disconnect', function() {
  * Socket de escucha desde el puerto de GSTrackme 
  */
 gsSocket.on('new-event', function(response) {
-    log.info(response);
+    // log.info(response);
     if (response != null && response.body.event != '011') {
         // if (settings.get('data.id_client') == response.body.idClient) {
         socket.emit('recibiendo', {
