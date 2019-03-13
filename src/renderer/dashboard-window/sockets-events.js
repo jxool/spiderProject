@@ -1,3 +1,5 @@
+import log from "electron-log"
+
 var socket = io('http://localhost:3000');
 var gsSocket = io('https://gstrackme.net:3603')
 var geoSocket = io('http://gstrackme.net:7499')
@@ -16,6 +18,7 @@ gsSocket.on('disconnect', function() {
  * Socket de escucha desde el puerto de GSTrackme 
  */
 gsSocket.on('new-event', function(response) {
+    log.info(response);
     if (response != null && response.body.event != '011') {
         // if (settings.get('data.id_client') == response.body.idClient) {
         socket.emit('recibiendo', {
@@ -84,14 +87,14 @@ function addCont() {
 
         }
 
-        if (contNot > 0 && contNot <= 25) {
+        if (contNot > 0 && contNot <= 99) {
             let span = document.getElementById('cont')
             span.removeAttribute('style')
             span.innerText = contNot
-        } else if (contNot > 25) {
+        } else if (contNot > 99) {
             let span = document.getElementById('cont')
             span.removeAttribute('style')
-            span.innerText = '+25'
+            span.innerText = '+99'
         } else {
             let span = document.getElementById('cont')
             span.setAttribute('style', 'display:none')
